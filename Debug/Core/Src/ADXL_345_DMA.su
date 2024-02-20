@@ -1,0 +1,4 @@
+../Core/Src/ADXL_345_DMA.c:15:6:SPIError_Handler	4	static,ignoring_inline_asm
+../Core/Src/ADXL_345_DMA.c:25:13:SPI_Init	8	static
+../Core/Src/ADXL_345_DMA.c:63:13:DMA_Init	16	static
+../Core/Src/ADXL_345_DMA.c:79:13:ADXL_345_Communication_Init	8	static

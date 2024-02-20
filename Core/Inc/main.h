@@ -31,7 +31,8 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "ADXL345.h"
+#include "ADXL_345_DMA.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
