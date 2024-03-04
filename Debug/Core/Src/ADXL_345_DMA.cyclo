@@ -1,4 +1,6 @@
-../Core/Src/ADXL_345_DMA.c:15:6:SPIError_Handler	1
-../Core/Src/ADXL_345_DMA.c:25:13:SPI_Init	2
-../Core/Src/ADXL_345_DMA.c:63:13:DMA_Init	1
-../Core/Src/ADXL_345_DMA.c:79:13:ADXL_345_Communication_Init	1
+../Core/Src/ADXL_345_DMA.c:17:6:SPIError_Handler	1
+../Core/Src/ADXL_345_DMA.c:27:13:SPI_Init	2
+../Core/Src/ADXL_345_DMA.c:65:13:DMA_Init	1
+../Core/Src/ADXL_345_DMA.c:81:6:ADXL_345_Communication_Init	1
+../Core/Src/ADXL_345_DMA.c:88:6:SPI_ReceiveData	1
+../Core/Src/ADXL_345_DMA.c:94:6:SPI_SendData	1

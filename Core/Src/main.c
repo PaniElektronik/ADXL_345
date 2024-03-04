@@ -21,7 +21,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "ADXL345.h"
+//#include "ADXL345.h"
+#include "ADXL_345_DMA.h"
 
 /* USER CODE END Includes */
 
@@ -52,6 +53,7 @@
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 
+
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -65,6 +67,7 @@ static void MX_GPIO_Init(void);
   * @brief  The application entry point.
   * @retval int
   */
+
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -77,7 +80,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+  ADXL_345_Communication_Init();
   /* USER CODE END Init */
 
   /* Configure the system clock */

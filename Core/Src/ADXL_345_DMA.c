@@ -3,6 +3,8 @@
  *
  *  Created on: Jan 29, 2024
  *      Author: algac
+ *      Communication: SPI 4-Wire
+ *      8x Address Bits & 8x Data Bits (Send or Receive)
  */
 
 #include "ADXL_345_DMA.h"
@@ -76,9 +78,55 @@ static void DMA_Init(void)
 
 }
 
-static void ADXL_345_Communication_Init()
+void ADXL_345_Communication_Init()
 {
 	SPI_Init();
 	DMA_Init();
 }
 
+
+bool SPI_ReceiveData(uint8_t data[], uint8_t addr[])
+{
+	bool isReceive = false;
+	HAL_SPI_Transmit_DMA(&hspi1, addr, sizeof(&addr));
+	HAL_SPI_Receive_DMA(&hspi1, data, sizeof(&data));
+
+	return isReceive;
+}
+
+bool SPI_SendData(uint8_t data[], uint8_t addr[])
+{
+	bool isOutOfData = true;
+	uint8_t sendData[16];
+	//
+	/*
+	 * Below is method of connect two array of data:
+	 * address register + data to register
+	 * That's a frame protocol SPI,
+	 * described in datasheet ADXL_345
+	 */
+	if (sizeof(&data) ==8 && sizeof(&addr)==8)
+	{
+		int i;
+		for (i = 0; i < 8; i++)
+		{
+			sendData[i] = addr[i];
+			sendData[i+8] = data[i];
+		}
+		if (i>=16)
+		{
+			isOutOfData = true;
+		}
+	}
+	else
+	{
+		isOutOfData = true;
+		return isOutOfData;
+	}
+	if (isOutOfData == false)
+	{
+		HAL_SPI_Transmit_DMA(&hspi1, sendData, sizeof(&sendData));
+	}
+
+	return isOutOfData;
+}
