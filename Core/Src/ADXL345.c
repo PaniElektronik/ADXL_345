@@ -7,6 +7,7 @@
 
 //#include "ADXL345.h"
 #include "ADXL_345_DMA.h"
+#include "ADXL_345_ADDR_REG.h"
 
 
 

@@ -9,9 +9,9 @@
 
 #define SRC_ADXL345_H_
 
-
-
 #endif /* SRC_ADXL345_H_ */
 
+#include "ADXL_345_DMA.h"
+#include "ADXL_345_ADDR_REG.h"
 
 

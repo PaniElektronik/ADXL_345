@@ -9,6 +9,7 @@
 
 #include "ADXL_345_DMA.h"
 
+
 SPI_HandleTypeDef hspi1;
 DMA_HandleTypeDef hdma_spi1_rx;
 DMA_HandleTypeDef hdma_spi1_tx;
@@ -88,15 +89,28 @@ void ADXL_345_Communication_Init()
 bool SPI_ReceiveData(uint8_t data[], uint8_t addr[])
 {
 	bool isReceive = false;
-	HAL_SPI_Transmit_DMA(&hspi1, addr, sizeof(&addr));
-	HAL_SPI_Receive_DMA(&hspi1, data, sizeof(&data));
-
-	return isReceive;
+	bool isSend = false;
+	if (sizeof(&data) ==8 && sizeof(&addr)==8)
+	{
+		if(HAL_SPI_Transmit_DMA(&hspi1, addr, sizeof(&addr))==HAL_OK)
+		{
+			isSend = true;
+		}
+		if (isSend == true)
+		{
+			if(HAL_SPI_Receive_DMA(&hspi1, data, sizeof(&data))==HAL_OK)
+			{
+				isReceive = true;
+			}
+		}
+	}
+		return isReceive;
 }
 
 bool SPI_SendData(uint8_t data[], uint8_t addr[])
 {
 	bool isOutOfData = true;
+	bool isSend = false;
 	uint8_t sendData[16];
 	//
 	/*
@@ -116,17 +130,25 @@ bool SPI_SendData(uint8_t data[], uint8_t addr[])
 		if (i>=16)
 		{
 			isOutOfData = true;
+			isSend = false;
 		}
 	}
 	else
 	{
 		isOutOfData = true;
-		return isOutOfData;
+
 	}
 	if (isOutOfData == false)
 	{
-		HAL_SPI_Transmit_DMA(&hspi1, sendData, sizeof(&sendData));
+		if(HAL_SPI_Transmit_DMA(&hspi1, sendData, sizeof(&sendData))==HAL_OK)
+		{
+			isSend = true;
+		}
+	}
+	else
+	{
+		isSend = false;
 	}
 
-	return isOutOfData;
+	return isSend;
 }
