@@ -1,12 +1,15 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (11.3.rel1)
+# Toolchain: GNU Tools for STM32 (12.3.rel1)
 ################################################################################
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Core/Src/ADXL345.c \
-../Core/Src/ADXL_345_DMA.c \
+../Core/Src/ERR.c \
+../Core/Src/GPIO_Config.c \
+../Core/Src/SPI_DMA.c \
+../Core/Src/SystemClock_Config.c \
 ../Core/Src/main.c \
 ../Core/Src/stm32f7xx_hal_msp.c \
 ../Core/Src/stm32f7xx_it.c \
@@ -16,7 +19,10 @@ C_SRCS += \
 
 OBJS += \
 ./Core/Src/ADXL345.o \
-./Core/Src/ADXL_345_DMA.o \
+./Core/Src/ERR.o \
+./Core/Src/GPIO_Config.o \
+./Core/Src/SPI_DMA.o \
+./Core/Src/SystemClock_Config.o \
 ./Core/Src/main.o \
 ./Core/Src/stm32f7xx_hal_msp.o \
 ./Core/Src/stm32f7xx_it.o \
@@ -26,7 +32,10 @@ OBJS += \
 
 C_DEPS += \
 ./Core/Src/ADXL345.d \
-./Core/Src/ADXL_345_DMA.d \
+./Core/Src/ERR.d \
+./Core/Src/GPIO_Config.d \
+./Core/Src/SPI_DMA.d \
+./Core/Src/SystemClock_Config.d \
 ./Core/Src/main.d \
 ./Core/Src/stm32f7xx_hal_msp.d \
 ./Core/Src/stm32f7xx_it.d \
@@ -42,7 +51,7 @@ Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/ADXL345.cyclo ./Core/Src/ADXL345.d ./Core/Src/ADXL345.o ./Core/Src/ADXL345.su ./Core/Src/ADXL_345_DMA.cyclo ./Core/Src/ADXL_345_DMA.d ./Core/Src/ADXL_345_DMA.o ./Core/Src/ADXL_345_DMA.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32f7xx_hal_msp.cyclo ./Core/Src/stm32f7xx_hal_msp.d ./Core/Src/stm32f7xx_hal_msp.o ./Core/Src/stm32f7xx_hal_msp.su ./Core/Src/stm32f7xx_it.cyclo ./Core/Src/stm32f7xx_it.d ./Core/Src/stm32f7xx_it.o ./Core/Src/stm32f7xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f7xx.cyclo ./Core/Src/system_stm32f7xx.d ./Core/Src/system_stm32f7xx.o ./Core/Src/system_stm32f7xx.su
+	-$(RM) ./Core/Src/ADXL345.cyclo ./Core/Src/ADXL345.d ./Core/Src/ADXL345.o ./Core/Src/ADXL345.su ./Core/Src/ERR.cyclo ./Core/Src/ERR.d ./Core/Src/ERR.o ./Core/Src/ERR.su ./Core/Src/GPIO_Config.cyclo ./Core/Src/GPIO_Config.d ./Core/Src/GPIO_Config.o ./Core/Src/GPIO_Config.su ./Core/Src/SPI_DMA.cyclo ./Core/Src/SPI_DMA.d ./Core/Src/SPI_DMA.o ./Core/Src/SPI_DMA.su ./Core/Src/SystemClock_Config.cyclo ./Core/Src/SystemClock_Config.d ./Core/Src/SystemClock_Config.o ./Core/Src/SystemClock_Config.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32f7xx_hal_msp.cyclo ./Core/Src/stm32f7xx_hal_msp.d ./Core/Src/stm32f7xx_hal_msp.o ./Core/Src/stm32f7xx_hal_msp.su ./Core/Src/stm32f7xx_it.cyclo ./Core/Src/stm32f7xx_it.d ./Core/Src/stm32f7xx_it.o ./Core/Src/stm32f7xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f7xx.cyclo ./Core/Src/system_stm32f7xx.d ./Core/Src/system_stm32f7xx.o ./Core/Src/system_stm32f7xx.su
 
 .PHONY: clean-Core-2f-Src
 

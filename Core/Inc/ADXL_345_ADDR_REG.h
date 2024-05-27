@@ -5,11 +5,6 @@
  *      Author: algac
  */
 
-#ifndef SRC_ADXL_345_ADDR_REG_H_
-#define SRC_ADXL_345_ADDR_REG_H_
-#endif /* SRC_ADXL_345_ADDR_REG_H_ */
-
-
 #define		DEVID_R				0x00	//Device ID
 #define		THRESH_TAP_RW		0x1D	//Tap treshold
 #define 	DUR_RW				0x21	//Tap duration
@@ -47,3 +42,8 @@
 
 #define		FIFO_CTL_RW			0x38	//FIFO control
 #define		FIFO_STATUS_R		0x39	//FIFO status
+
+
+#ifndef SRC_ADXL_345_ADDR_REG_H_
+#define SRC_ADXL_345_ADDR_REG_H_
+#endif /* SRC_ADXL_345_ADDR_REG_H_ */

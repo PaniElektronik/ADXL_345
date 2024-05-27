@@ -7,7 +7,7 @@
  *      8x Address Bits & 8x Data Bits (Send or Receive)
  */
 
-#include "ADXL_345_DMA.h"
+#include "SPI_DMA.h"
 
 
 SPI_HandleTypeDef hspi1;
@@ -15,17 +15,7 @@ DMA_HandleTypeDef hdma_spi1_rx;
 DMA_HandleTypeDef hdma_spi1_tx;
 
 
-void SPIError_Handler(void)
-{
-  /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
-  while (1)
-  {
-  }
-  /* USER CODE END Error_Handler_Debug */
-}
-static void SPI_Init(void)
+void MX_SPI1_Init(void)
 {
 
   /* USER CODE BEGIN SPI1_Init 0 */
@@ -52,7 +42,7 @@ static void SPI_Init(void)
   hspi1.Init.NSSPMode = SPI_NSS_PULSE_ENABLE;
   if (HAL_SPI_Init(&hspi1) != HAL_OK)
   {
-    SPIError_Handler();
+    Error_Handler();
   }
   /* USER CODE BEGIN SPI1_Init 2 */
 
@@ -63,7 +53,7 @@ static void SPI_Init(void)
 /**
   * Enable DMA controller clock
   */
-static void DMA_Init(void)
+void MX_DMA_Init(void)
 {
 
   /* DMA controller clock enable */
@@ -79,76 +69,37 @@ static void DMA_Init(void)
 
 }
 
-void ADXL_345_Communication_Init()
-{
-	SPI_Init();
-	DMA_Init();
-}
 
 
-bool SPI_ReceiveData(uint8_t data[], uint8_t addr[])
+
+bool SPI_ReceiveData(uint16_t size,uint8_t data[size])
 {
 	bool isReceive = false;
-	bool isSend = false;
-	if (sizeof(&data) ==8 && sizeof(&addr)==8)
+
+	if(HAL_SPI_Receive_DMA(&hspi1, data, size)==HAL_OK)
 	{
-		if(HAL_SPI_Transmit_DMA(&hspi1, addr, sizeof(&addr))==HAL_OK)
-		{
-			isSend = true;
-		}
-		if (isSend == true)
-		{
-			if(HAL_SPI_Receive_DMA(&hspi1, data, sizeof(&data))==HAL_OK)
-			{
-				isReceive = true;
-			}
-		}
+		isReceive = true;
 	}
+
 		return isReceive;
 }
 
-bool SPI_SendData(uint8_t data[], uint8_t addr[])
+bool SPI_SendData(int size, uint8_t sendData[size])
 {
-	bool isOutOfData = true;
 	bool isSend = false;
-	uint8_t sendData[16];
-	//
-	/*
-	 * Below is method of connect two array of data:
-	 * address register + data to register
-	 * That's a frame protocol SPI,
-	 * described in datasheet ADXL_345
-	 */
-	if (sizeof(&data) ==8 && sizeof(&addr)==8)
-	{
-		int i;
-		for (i = 0; i < 8; i++)
-		{
-			sendData[i] = addr[i];
-			sendData[i+8] = data[i];
-		}
-		if (i>=16)
-		{
-			isOutOfData = true;
-			isSend = false;
-		}
-	}
-	else
-	{
-		isOutOfData = true;
+	uint32_t Timeout = 1000;
+	uint32_t tickstart = HAL_GetTick();
 
-	}
-	if (isOutOfData == false)
+
+	if(HAL_SPI_Transmit_DMA(&hspi1, sendData, size)==HAL_OK)
+	// why DMA have a broke mind?
+	//if(HAL_SPI_Transmit(&hspi1, sendData, size, 100)==HAL_OK)
 	{
-		if(HAL_SPI_Transmit_DMA(&hspi1, sendData, sizeof(&sendData))==HAL_OK)
-		{
-			isSend = true;
-		}
+		isSend = true;
 	}
-	else
-	{
-		isSend = false;
-	}
+
 
 	return isSend;
 }
+
+

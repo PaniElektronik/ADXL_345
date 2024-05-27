@@ -27,8 +27,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi_ex.h \
- ../Core/Inc/ADXL345.h ../Core/Inc/ADXL_345_DMA.h \
- ../Core/Inc/ADXL_345_ADDR_REG.h ../Core/Inc/ADXL_345_DMA.h
+ ../Core/Inc/ADXL345.h ../Core/Inc/SPI_DMA.h ../Core/Inc/stm32f7xx_it.h \
+ ../Core/Inc/ADXL_345_ADDR_REG.h ../Core/Inc/SystemClock_Config.h \
+ ../Core/Inc/GPIO_Config.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 ../Core/Inc/stm32f7xx_hal_conf.h:
@@ -59,6 +60,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi_ex.h:
 ../Core/Inc/ADXL345.h:
-../Core/Inc/ADXL_345_DMA.h:
+../Core/Inc/SPI_DMA.h:
+../Core/Inc/stm32f7xx_it.h:
 ../Core/Inc/ADXL_345_ADDR_REG.h:
-../Core/Inc/ADXL_345_DMA.h:
+../Core/Inc/SystemClock_Config.h:
+../Core/Inc/GPIO_Config.h:

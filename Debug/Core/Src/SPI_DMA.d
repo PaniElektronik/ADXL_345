@@ -1,5 +1,4 @@
-Core/Src/ADXL_345_DMA.o: ../Core/Src/ADXL_345_DMA.c \
- ../Core/Inc/ADXL_345_DMA.h \
+Core/Src/SPI_DMA.o: ../Core/Src/SPI_DMA.c ../Core/Inc/SPI_DMA.h \
  ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h \
  ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h \
  ../Drivers/CMSIS/Include/core_cm7.h \
@@ -27,8 +26,9 @@ Core/Src/ADXL_345_DMA.o: ../Core/Src/ADXL_345_DMA.c \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h \
- ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi_ex.h
-../Core/Inc/ADXL_345_DMA.h:
+ ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi_ex.h \
+ ../Core/Inc/stm32f7xx_it.h
+../Core/Inc/SPI_DMA.h:
 ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h:
 ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h:
 ../Drivers/CMSIS/Include/core_cm7.h:
@@ -57,3 +57,4 @@ Core/Src/ADXL_345_DMA.o: ../Core/Src/ADXL_345_DMA.c \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi_ex.h:
+../Core/Inc/stm32f7xx_it.h:
