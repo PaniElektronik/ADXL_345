@@ -35,6 +35,7 @@ extern "C" {
 #include "SPI_DMA.h"
 #include "SystemClock_Config.h"
 #include "GPIO_Config.h"
+#include "ERR.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

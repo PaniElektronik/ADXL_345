@@ -1,9 +1,12 @@
-/*
- * ADXL_345_ADDR_REG.h
- *
- *  Created on: Mar 5, 2024
- *      Author: algac
- */
+/**
+ * ----------------------------------------------------------------
+ @file		ADXL_345_ADDR_REG.h
+ @anchor	ADXL345.c
+ @brief		ADXL345 Register Map
+ @author	Alicja Gackowiec (PaniElektronik)
+ @version	v1.0
+ * ----------------------------------------------------------------
+ **/
 
 #define		DEVID_R				0x00	//Device ID
 #define		THRESH_TAP_RW		0x1D	//Tap treshold
@@ -44,6 +47,7 @@
 #define		FIFO_STATUS_R		0x39	//FIFO status
 
 
-#ifndef SRC_ADXL_345_ADDR_REG_H_
-#define SRC_ADXL_345_ADDR_REG_H_
-#endif /* SRC_ADXL_345_ADDR_REG_H_ */
+//#ifndef SRC_ADXL_345_ADDR_REG_H_
+//#define SRC_ADXL_345_ADDR_REG_H_
+//#endif
+/* SRC_ADXL_345_ADDR_REG_H_ */

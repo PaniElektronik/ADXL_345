@@ -1,18 +1,28 @@
-/*
- * GPIO_Config.h
- *
- *  Created on: Mar 7, 2024
- *      Author: algac
- */
+/**
+ * ----------------------------------------------------------------
+ @file		GPIO_Config.h
+ @anchor	GPIO_Config.c
+ @brief		GPIO Configuration Header
+ @author	Alicja Gackowiec (PaniElektronik)
+ @version	v1.0
+ * ----------------------------------------------------------------
+ **/
+
+/*---------------------------	Includes	---------------------------*/
 #include "stm32f7xx.h"
 #include "stm32f7xx_hal.h"
 
+
+/*---------------------------	Defines	---------------------------*/
 #define LED_RED_Pin GPIO_PIN_14
 #define LED_RED_GPIO_Port GPIOB
-#define LED_GREEN_Pin GPIO_PIN_7
-#define LED_GREEN_GPIO_Port GPIOB
+#define LED_BLUE_Pin GPIO_PIN_7
+#define LED_BLUE_GPIO_Port GPIOB
 
+/*---------------------------	Variables	---------------------------*/
 
-#ifndef INC_GPIO_CONFIG_H_
-#define INC_GPIO_CONFIG_H_
-#endif /* INC_GPIO_CONFIG_H_ */
+/*---------------------------	Functions	---------------------------*/
+
+//#ifndef INC_GPIO_CONFIG_H_
+//#define INC_GPIO_CONFIG_H_
+//#endif /* INC_GPIO_CONFIG_H_ */

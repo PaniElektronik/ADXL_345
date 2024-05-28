@@ -16,90 +16,53 @@
   ******************************************************************************
   */
 /* USER CODE END Header */
-/* Includes ------------------------------------------------------------------*/
+
 #include "main.h"
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
-
-/* USER CODE END Includes */
-
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
-
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-
-/* USER CODE END PM */
-
-/* Private variables ---------------------------------------------------------*/
-
-extern SPI_HandleTypeDef hspi1;
-extern DMA_HandleTypeDef hdma_spi1_rx;
-extern DMA_HandleTypeDef hdma_spi1_tx;
-
-/* USER CODE BEGIN PV */
-
-/* USER CODE END PV */
-
-/* Private function prototypes -----------------------------------------------*/
-
-/* USER CODE BEGIN PFP */
-
-/* USER CODE END PFP */
-
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
-uint8_t data[8] = {1,2,3,4,5,6,7,8};
-/* USER CODE END 0 */
-
 /**
-  * @brief  The application entry point.
-  * @retval int
-  */
+ * ----------------------------------------------------------------
+ @brief			main function
+ @param[in]
+ @param[out]
+ @return
+ * ----------------------------------------------------------------
+ **/
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
 
-  /* USER CODE END 1 */
-
-  /* MCU Configuration--------------------------------------------------------*/
-
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
-
-  /* Configure the system clock */
-  SystemClock_Config();
-
-  /* USER CODE BEGIN SysInit */
-
-  /* USER CODE END SysInit */
-
   /* Initialize all configured peripherals */
+  SystemClock_Config();
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_SPI1_Init();
 
-
+  uint8_t data[8] = {1,2,3,4,5,6,7,8};
   while (1)
   {
-
+	  // TEST
+	  if(ADXL345_SendData(8, data, data)==true)
+	  {
+		  HAL_GPIO_TogglePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin);
+	  }
+	  else
+	  {
+		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
+	  }
+	  HAL_Delay(500);
   }
 
 }
 
-
+/**
+ * ----------------------------------------------------------------
+ @brief			Error Handler
+ @param[in]		-
+ @param[out]	-
+ @return		-
+ * ----------------------------------------------------------------
+ **/
 void Error_Handler()
 {
   /* USER CODE BEGIN Error_Handler_Debug */

@@ -1,16 +1,21 @@
-/*
- * ERR.h
- *
- *  Created on: May 13, 2024
- *      Author: algac
- */
+/**
+ * ----------------------------------------------------------------
+ @file		ERR.h
+ @anchor	ERR.c
+ @brief		Error Module Header
+ @author	Alicja Gackowiec (PaniElektronik)
+ @version	v1.0
+ * ----------------------------------------------------------------
+ **/
 
-#ifndef INC_ERR_H_
-#define INC_ERR_H_
+/*---------------------------	Includes	---------------------------*/
+/*---------------------------	Variables	---------------------------*/
+/*---------------------------	Functions	---------------------------*/
 
 
-
-#endif /* INC_ERR_H_ */
+//#ifndef INC_ERR_H_
+//#define INC_ERR_H_
+//#endif /* INC_ERR_H_ */
 
 
 

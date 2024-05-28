@@ -1,30 +1,30 @@
-/*
- * ADXL_345_DMA.c
- *
- *  Created on: Jan 29, 2024
- *      Author: algac
- *      Communication: SPI 4-Wire
- *      8x Address Bits & 8x Data Bits (Send or Receive)
- */
-
+/**
+ * ----------------------------------------------------------------
+ @file		SPI_DMA.c
+ @anchor	GPIO_Config.c
+ @brief		Communication Module
+ @author	Alicja Gackowiec (PaniElektronik)
+ @version	v1.0
+ * ----------------------------------------------------------------
+ **/
 #include "SPI_DMA.h"
 
-
+/*---------------------------	Variables	---------------------------*/
 SPI_HandleTypeDef hspi1;
 DMA_HandleTypeDef hdma_spi1_rx;
 DMA_HandleTypeDef hdma_spi1_tx;
 
 
-void MX_SPI1_Init(void)
+/**
+ * ----------------------------------------------------------------
+ @brief			SPI Communication config
+ @param[in]
+ @param[out]
+ @return
+ * ----------------------------------------------------------------
+ **/
+void MX_SPI1_Init()
 {
-
-  /* USER CODE BEGIN SPI1_Init 0 */
-
-  /* USER CODE END SPI1_Init 0 */
-
-  /* USER CODE BEGIN SPI1_Init 1 */
-
-  /* USER CODE END SPI1_Init 1 */
   /* SPI1 parameter configuration*/
   hspi1.Instance = SPI1;
   hspi1.Init.Mode = SPI_MODE_MASTER;
@@ -44,16 +44,18 @@ void MX_SPI1_Init(void)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN SPI1_Init 2 */
-
-  /* USER CODE END SPI1_Init 2 */
 
 }
 
 /**
-  * Enable DMA controller clock
-  */
-void MX_DMA_Init(void)
+ * ----------------------------------------------------------------
+ @brief			DMA Communication config
+ @param[in]
+ @param[out]
+ @return
+ * ----------------------------------------------------------------
+ **/
+void MX_DMA_Init()
 {
 
   /* DMA controller clock enable */
@@ -69,9 +71,15 @@ void MX_DMA_Init(void)
 
 }
 
-
-
-
+/**
+ * ----------------------------------------------------------------
+ @brief			Receive data from ADXL funcion
+ @param[in]		size - size of data
+ 	 	 	 	data - sample to receive
+ @param[out]
+ @return		isReceive - procedure's flag
+ * ----------------------------------------------------------------
+ **/
 bool SPI_ReceiveData(uint16_t size,uint8_t data[size])
 {
 	bool isReceive = false;
@@ -83,7 +91,15 @@ bool SPI_ReceiveData(uint16_t size,uint8_t data[size])
 
 		return isReceive;
 }
-
+/**
+ * ----------------------------------------------------------------
+ @brief			Send data to ADXL funcion
+ @param[in]		size - size of data
+ 	 	 	 	data - sample to send
+ @param[out]
+ @return		isSend - procedure's flag
+ * ----------------------------------------------------------------
+ **/
 bool SPI_SendData(int size, uint8_t sendData[size])
 {
 	bool isSend = false;
@@ -92,8 +108,6 @@ bool SPI_SendData(int size, uint8_t sendData[size])
 
 
 	if(HAL_SPI_Transmit_DMA(&hspi1, sendData, size)==HAL_OK)
-	// why DMA have a broke mind?
-	//if(HAL_SPI_Transmit(&hspi1, sendData, size, 100)==HAL_OK)
 	{
 		isSend = true;
 	}
