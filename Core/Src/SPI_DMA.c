@@ -80,15 +80,14 @@ void MX_DMA_Init()
  @return		isReceive - procedure's flag
  * ----------------------------------------------------------------
  **/
-bool SPI_ReceiveData(uint16_t size,uint8_t data[size])
+bool SPI_ReceiveData(uint8_t data)
 {
 	bool isReceive = false;
 
-	if(HAL_SPI_Receive_DMA(&hspi1, data, size)==HAL_OK)
+	if(HAL_SPI_Receive_DMA(&hspi1, &data, sizeof(data))==HAL_OK)
 	{
 		isReceive = true;
 	}
-
 		return isReceive;
 }
 /**
@@ -100,14 +99,14 @@ bool SPI_ReceiveData(uint16_t size,uint8_t data[size])
  @return		isSend - procedure's flag
  * ----------------------------------------------------------------
  **/
-bool SPI_SendData(int size, uint8_t sendData[size])
+bool SPI_SendData(uint8_t sendData)
 {
 	bool isSend = false;
 	uint32_t Timeout = 1000;
 	uint32_t tickstart = HAL_GetTick();
 
 
-	if(HAL_SPI_Transmit_DMA(&hspi1, sendData, size)==HAL_OK)
+	if(HAL_SPI_Transmit_DMA(&hspi1, &sendData, sizeof(sendData))==HAL_OK)
 	{
 		isSend = true;
 	}

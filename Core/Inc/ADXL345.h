@@ -19,8 +19,8 @@
 
 /*---------------------------	Functions	---------------------------*/
 void ADXL345_Init();
-bool ADXL345_SendData(uint16_t size, uint8_t data[size], uint8_t addr[size]);
-bool ADXL345_ReceiveData(uint16_t size, uint8_t data[size], uint8_t addr[size]);
+bool ADXL345_WriteReg(uint8_t data, uint8_t addr);
+bool ADXL345_ReadReg(uint8_t data, uint8_t addr);
 void ADXL345_Reset();
 
 

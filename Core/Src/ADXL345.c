@@ -9,6 +9,7 @@
  **/
 
 #include "ADXL345.h"
+
 /**
  * ----------------------------------------------------------------
  @brief			Funcion checked result of received data from ADXL
@@ -19,22 +20,27 @@
  @return		isReceive - procedure's flag
  * ----------------------------------------------------------------
  **/
-bool ADXL345_ReceiveData(uint16_t size, uint8_t data[size], uint8_t addr[size])
+bool ADXL345_ReadReg(uint8_t data, uint8_t addr)
 {
 	bool isReceive = false;
+	bool isSend = false;
 
+		if(SPI_SendData(addr) == true)
+		{
+			if(SPI_ReceiveData(data) == true)
+			{
+				isReceive = true;
+			}
+			isSend = true;
+		}
 
-	if (sizeof(&data) ==8 && sizeof(&addr)==8)
-	{
-
-	}
-	return isReceive;
+	return isReceive & isSend;
 }
 /**
  * ----------------------------------------------------------------
  @brief			Funcion checked result of sended data to ADXL
  	 	 	 	and merged two variables - data and addr - to send a frame
- 	 	 	 	according to documentation
+ 	 	 	 	according to documentation of ADXL
  @param[in] 	size - size of frame,
  	 	 	 	data - frame samples,
  	 	 	 	addr - address of data
@@ -42,40 +48,42 @@ bool ADXL345_ReceiveData(uint16_t size, uint8_t data[size], uint8_t addr[size])
  @return		isSend - procedure's flag
  * ----------------------------------------------------------------
  **/
-bool ADXL345_SendData(uint16_t size, uint8_t data[size], uint8_t addr[size])
+bool ADXL345_WriteReg(uint8_t data, uint8_t addr)
 {
-	bool isOutOfData = true;
+
 	bool isSend = false;
-	uint8_t sendData[16];
+	uint16_t sendData = (addr << 4) + data;
 
-	if (size == 8 )
-	{
-		int j;
-		for (j = 0; j < 8; j++)
-		{
-			sendData[j] = addr[j];
-			sendData[j+8] = data[j];
-		}
-		size = size + j;
-		if (size>16)
-		{
-			isOutOfData = true;
-		}
-		else
-		{
-			isOutOfData = false;
-		}
-	}
-
-	if (isOutOfData == false)
-	{
-		if(SPI_SendData(size, sendData)==true)
+		if(SPI_SendData(sendData)==true)
 		{
 			isSend = true;
 		}
+	return isSend;
+}
+
+/**
+ * ----------------------------------------------------------------
+ @brief			Funcion initialization accelerometer to proper
+ 	 	 	 	first operations
+ @param[in]		-
+ @param[out]	-
+ @return		-
+ * ----------------------------------------------------------------
+ **/
+void ADXL345_Init()
+{
+	// value of proper DEVID is 0xE5 (345 octal)
+
+	uint8_t addr = DEVID_R;
+	uint8_t data = 0xE5;
+
+	//bool isDeviceID = false;
+	ADXL345_ReadReg(data,addr);
+	if (data == 0xE5)
+	{
+
 	}
 
-	return isSend;
 }
 
 /**

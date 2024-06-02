@@ -38,11 +38,11 @@ int main(void)
   MX_DMA_Init();
   MX_SPI1_Init();
 
-  uint8_t data[8] = {1,2,3,4,5,6,7,8};
+  uint8_t data = 1;
   while (1)
   {
 	  // TEST
-	  if(ADXL345_SendData(8, data, data)==true)
+	  if(ADXL345_WriteReg(data, data)==true)
 	  {
 		  HAL_GPIO_TogglePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin);
 	  }

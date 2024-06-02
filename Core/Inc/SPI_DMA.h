@@ -18,8 +18,8 @@
 
 
 /*---------------------------	Functions	---------------------------*/
-bool SPI_ReceiveData(uint16_t size, uint8_t data[size]);
-bool SPI_SendData(int size, uint8_t sendData[size]);
+bool SPI_ReceiveData(uint8_t data);
+bool SPI_SendData(uint8_t sendData);
 
 
 

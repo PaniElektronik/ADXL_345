@@ -1,4 +1,4 @@
 ../Core/Src/SPI_DMA.c:26:6:MX_SPI1_Init	8	static
 ../Core/Src/SPI_DMA.c:58:6:MX_DMA_Init	16	static
-../Core/Src/SPI_DMA.c:82:6:SPI_ReceiveData	24	static
-../Core/Src/SPI_DMA.c:101:6:SPI_SendData	32	static
+../Core/Src/SPI_DMA.c:83:6:SPI_ReceiveData	24	static
+../Core/Src/SPI_DMA.c:102:6:SPI_SendData	32	static
