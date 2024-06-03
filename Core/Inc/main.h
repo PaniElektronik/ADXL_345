@@ -31,12 +31,19 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "ADXL345.h"
+#include "SPI_DMA.h"
+#include "SystemClock_Config.h"
+#include "GPIO_Config.h"
+#include "ERR.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-
+void Error_Handler(void);
+void MX_GPIO_Init(void);
+void MX_DMA_Init(void);
+void MX_SPI1_Init(void);
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
@@ -50,13 +57,13 @@ extern "C" {
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
-void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+
 
 /* USER CODE BEGIN Private defines */
 
