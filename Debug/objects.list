@@ -3,6 +3,8 @@
 "./Core/Src/ADXL345_I2C.o"
 "./Core/Src/ClockConfig.o"
 "./Core/Src/GPIOConfig.o"
+"./Core/Src/SSD1306.o"
+"./Core/Src/SSD1306_I2C.o"
 "./Core/Src/main.o"
 "./Core/Src/stm32f7xx_hal_msp.o"
 "./Core/Src/stm32f7xx_it.o"

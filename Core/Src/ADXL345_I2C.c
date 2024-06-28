@@ -8,8 +8,8 @@
  */
 
 /*------------------------------ INCLUDES ------------------------------*/
-#include "ADXL345_I2C.h"
 #include "stm32f7xx_hal.h"
+#include "ADXL345_I2C.h"
 /*------------------------------ DECLARATIONS ------------------------------*/
 I2C_HandleTypeDef hi2c1;
 /*------------------------------ FUNCTIONS ------------------------------*/
@@ -49,3 +49,7 @@ void MX_I2C1_Init(void)
   }
 
 }
+
+#ifndef INC_ADXL_I2C_H_
+#define	INC_ADXL_I2C_H_
+#endif  /* INC_ADXL_I2C_H_ */

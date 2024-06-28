@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2023 STMicroelectronics.
+  * Copyright (c) 2024 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -16,7 +16,7 @@
   *
   ******************************************************************************
   */
-
+/* USER CODE END Header */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __MAIN_H
@@ -33,6 +33,7 @@ extern "C" {
 /* USER CODE BEGIN Includes */
 #include "ADXL345.h"
 #include "ADXL345_I2C.h"
+#include "SSD1306_I2C.h"
 #include "ClockConfig.h"
 #include "GPIOConfig.h"
 /* USER CODE END Includes */
@@ -53,7 +54,7 @@ extern void Error_Handler(void);
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
-
+void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
 

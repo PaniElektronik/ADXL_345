@@ -26,7 +26,8 @@ Core/Src/stm32f7xx_hal_msp.o: ../Core/Src/stm32f7xx_hal_msp.c \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h \
  ../Core/Inc/ADXL345.h ../Core/Inc/ADXL345_I2C.h \
- ../Core/Inc/ClockConfig.h ../Core/Inc/GPIOConfig.h
+ ../Core/Inc/SSD1306_I2C.h ../Core/Inc/ClockConfig.h \
+ ../Core/Inc/GPIOConfig.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 ../Core/Inc/stm32f7xx_hal_conf.h:
@@ -56,5 +57,6 @@ Core/Src/stm32f7xx_hal_msp.o: ../Core/Src/stm32f7xx_hal_msp.c \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h:
 ../Core/Inc/ADXL345.h:
 ../Core/Inc/ADXL345_I2C.h:
+../Core/Inc/SSD1306_I2C.h:
 ../Core/Inc/ClockConfig.h:
 ../Core/Inc/GPIOConfig.h:

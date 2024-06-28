@@ -11,8 +11,8 @@
 #include "ADXL345.h"
 /*------------------------------ FUNCTIONS ------------------------------*/
 /**
- * @name	ADXL345_WriteRegister
- * @brief	Write data to register
+ * @name			ADXL345_WriteRegister
+ * @brief			Write data to register
  *
  * @param[in]		uint8_t regAddr,
  * 					uint8_t regData.
@@ -95,40 +95,62 @@ bool ADXL345_ReadMultiRegister(uint8_t regAddr, uint8_t *regData, uint16_t regDa
  *
  * @param[in]		-
  * @param[in,out]	-
- * @param[out]		-
+ * @param[out]		ADXL345_RegInit,
  * @return			ADXL345_INIT_OK
  */
 ADXL345_RegInit ADXL345_Init(void)
 {
-    if(ADXL345_WriteRegister(ADXL345_REG_POWER_CTL, 0x08) != true)
-    {
-    	return POWER_CTL_ERR;
-    }
-	if(ADXL345_WriteRegister(ADXL345_REG_DATA_FORMAT, 0x08) != true)
-	{
-		return DATA_FORMAT_ERR;
-	}
-	if(ADXL345_WriteRegister(ADXL345_REG_BW_RATE, 0x0A) != true)
-	{
-		return BW_RATE_ERR;
-	}
-	if(ADXL345_WriteRegister(ADXL345_REG_FIFO_CTL, 0x00) != true)
-	{
-		return FIFO_CTL_ERR;
-	}
+	if (!ADXL345_WriteRegister(ADXL345_REG_POWER_CTL, 0x08))  // Włączenie czujnika
+	    {
+	        return POWER_CTL_ERR;
+	    }
+	    if (!ADXL345_WriteRegister(ADXL345_REG_DATA_FORMAT, 0x08))  // Ustawienie zakresu ±2g
+	    {
+	        return DATA_FORMAT_ERR;
+	    }
+	    if (!ADXL345_WriteRegister(ADXL345_REG_BW_RATE, 0x0A))  // Ustawienie częstotliwości próbkowania
+	    {
+	        return BW_RATE_ERR;
+	    }
+	    if (!ADXL345_WriteRegister(ADXL345_REG_FIFO_CTL, 0x00))  // Ustawienie FIFO w trybie bypass
+	    {
+	        return FIFO_CTL_ERR;
+	    }
+	    if (!ADXL345_WriteRegister(ADXL345_REG_TAP_AXES, 0x07))  // Ustawienie detekcji tapnięć na wszystkich osiach
+	    {
+	        return TAP_AXES_ERR;
+	    }
+	    if (!ADXL345_WriteRegister(ADXL345_REG_THRESH_TAP, 0x20))  // Ustawienie progu tapnięcia
+	    {
+	        return THRESH_TAP_ERR;
+	    }
+	    if (!ADXL345_WriteRegister(ADXL345_REG_DUR, 0x10))  // Ustawienie czasu trwania tapnięcia
+	    {
+	        return DUR_ERR;
+	    }
+	    if (!ADXL345_WriteRegister(ADXL345_REG_LATENT, 0x10))  // Ustawienie czasu latencji między tapnięciami
+	    {
+	        return LATENT_ERR;
+	    }
+	    if (!ADXL345_WriteRegister(ADXL345_REG_WINDOW, 0x30))  // Ustawienie okna czasowego na detekcję podwójnego tapnięcia
+	    {
+	        return WINDOW_ERR;
+	    }
 
-	return ADXL345_INIT_OK;
+	  return ADXL345_INIT_OK;
 
 
 }
 /**
- * @name
- * @brief
+ * @name			ADXL345_ReadData
+ * @brief			Read data from ADXL and converted data
  *
- * @param[in]
- * @param[in,out]
- * @param[out]
- * @return
+ * @param[in]		-
+ * @param[in,out]	int16_t* x,
+ * 					int16_t* y,
+ * 					int16_t* z
+ * @param[out]		-
+ * @return			bool isReadData
  */
 bool ADXL345_ReadData(int16_t* x, int16_t* y, int16_t* z)
 {
@@ -146,11 +168,64 @@ bool ADXL345_ReadData(int16_t* x, int16_t* y, int16_t* z)
 }
 
 /**
- * @name
- * @brief
+ * @name			ConvertToMS2
+ * @brief			Convert variable to m/s^2
  *
- * @param[in]
- * @param[in,out]
- * @param[out]
+ * @param[in]		int16_t raw,
+ * 					SCALE_FACTOR,
+ * 					GRAVITY
+ * @param[in,out]	-
+ * @param[out]		float* ms2
  * @return
  */
+
+
+void ConvertToMS2(int16_t raw, float* ms2)
+{
+    *ms2 = raw * SCALE_FACTOR * GRAVITY;
+}
+
+/**
+ * @name			CalculateDisplacement
+ * @brief			Calculate m/s^2 to meters
+ *
+ * @param[in]		-
+ * @param[in,out]	-
+ * @param[out]		-
+ * @return			bool isCalculate,
+ */
+
+
+bool CalculateDisplacement(void)
+{
+    bool isCalculate = false;
+    int16_t x_raw, y_raw, z_raw;
+    float ax, ay, az;
+    static float vx = 0, vy = 0, vz = 0;
+    static float dx = 0, dy = 0, dz = 0;
+    float dt = SAMPLE_PERIOD;
+
+    if (ADXL345_ReadData(&x_raw, &y_raw, &z_raw) == true)
+    {
+        ConvertToMS2(x_raw, &ax);
+        ConvertToMS2(y_raw, &ay);
+        ConvertToMS2(z_raw, &az);
+
+
+        vx += ax * dt;
+        vy += ay * dt;
+        vz += az * dt;
+
+
+        dx += vx * dt;
+        dy += vy * dt;
+        dz += vz * dt;
+
+
+        isCalculate = true;
+    }
+
+    return isCalculate;
+}
+
+

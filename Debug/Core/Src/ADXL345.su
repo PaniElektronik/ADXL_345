@@ -1,5 +1,7 @@
-../Core/Src/ADXL345.c:22:6:ADXL345_WriteRegister	32	static
-../Core/Src/ADXL345.c:41:9:ADXL345_ReadRegister	32	static
-../Core/Src/ADXL345.c:74:6:ADXL345_ReadMultiRegister	32	static
-../Core/Src/ADXL345.c:100:17:ADXL345_Init	8	static
-../Core/Src/ADXL345.c:132:6:ADXL345_ReadData	32	static
+../Core/Src/ADXL345.c:23:6:ADXL345_WriteRegister	32	static
+../Core/Src/ADXL345.c:42:9:ADXL345_ReadRegister	32	static
+../Core/Src/ADXL345.c:75:6:ADXL345_ReadMultiRegister	32	static
+../Core/Src/ADXL345.c:101:17:ADXL345_Init	8	static
+../Core/Src/ADXL345.c:155:6:ADXL345_ReadData	32	static
+../Core/Src/ADXL345.c:183:6:ConvertToMS2	16	static
+../Core/Src/ADXL345.c:199:6:CalculateDisplacement	40	static
