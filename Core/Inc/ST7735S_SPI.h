@@ -12,7 +12,7 @@
 #include "stm32f7xx_hal_i2c.h"
 /*------------------------------ FUNCTIONS ------------------------------*/
 extern void Error_Handler(void);
-void MX_I2C2_Init(void);
+void MX_SPI1_Init(void);
 /*------------------------------ OTHERS ------------------------------*/
 #ifndef INC_SSD1306_I2C_H_
 #define INC_SSD1306_I2C_H_

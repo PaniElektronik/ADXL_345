@@ -33,9 +33,10 @@ extern "C" {
 /* USER CODE BEGIN Includes */
 #include "ADXL345.h"
 #include "ADXL345_I2C.h"
-#include "SSD1306_I2C.h"
+#include <ST7735S_SPI.h>
 #include "ClockConfig.h"
 #include "GPIOConfig.h"
+#include <ST7735S.h>
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -54,17 +55,14 @@ extern void Error_Handler(void);
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
-void Error_Handler(void);
+
 
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define LED_RED_Pin GPIO_PIN_14
-#define LED_RED_GPIO_Port GPIOB
-#define LED_BLUE_Pin GPIO_PIN_7
-#define LED_BLUE_GPIO_Port GPIOB
+
 
 /* USER CODE BEGIN Private defines */
 

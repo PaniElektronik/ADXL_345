@@ -41,18 +41,11 @@
 
 /* Private variables ---------------------------------------------------------*/
 
-I2C_HandleTypeDef hi2c1;
-I2C_HandleTypeDef hi2c2;
-
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
-void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
-static void MX_I2C1_Init(void);
-static void MX_I2C2_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -92,8 +85,9 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C1_Init();
-  MX_I2C2_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
+
   if(ADXL345_Init()==ADXL345_INIT_OK)
   {
 	  isADXLInit = true;
@@ -104,22 +98,21 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if(isADXLInit == true)
+	   if(isADXLInit == true)
 	  {
 		  if(CalculateDisplacement()==true)
 		  {
-			  HAL_GPIO_TogglePin(LED_BLUE_GPIO_Port,LED_BLUE_Pin);
-			  HAL_Delay(500);
+			  HAL_GPIO_TogglePin(LED_ORANGE_GPIO_Port, LED_ORANGE_Pin);
+	  	  	  HAL_Delay(100);
 		  }
 	  }
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
-
-
 
 #ifdef  USE_FULL_ASSERT
 /**
